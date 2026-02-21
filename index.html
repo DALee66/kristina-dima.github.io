@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!--
+============================================================================
+PROJECT: Wedding Invitation — "How Heart Beats"
+COUPLE: Кристина & Дима
+DATE: 07.08.2026
+LOCATION: Екатеринбург
+============================================================================
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свадьба Кристины и Димы | 07.08.2026</title>
+<meta name="description" content="Приглашение на свадьбу Кристины и Димы. 7 августа 2026 года, Екатеринбург.">
+<!-- Open Graph -->
+<meta property="og:title" content="Свадьба Кристины и Димы">
+<meta property="og:description" content="Ждем вас на нашем празднике!">
+<meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+<meta property="og:type" content="website">
+<!-- Шрифты -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================================================
+CSS VARIABLES — Исправленные и дополненные
+======================================================================== */
+:root {
+/* Base colors */
+--color-black: #1A1A1A;
+--color-brown: #5D4037;
+--color-beige: #f5f1e6;
+--color-sand: #e8dcc8;
+--color-powder: #f8e9e1;
+--color-white: #ffffff;
+--color-cream: #FAFAF8;
+
+/* Text colors */
+--text-primary: var(--color-black);
+--text-secondary: #4a4a4a;
+--text-light: var(--color-beige);
+
+/* Accent & interactive */
+--accent: var(--color-brown);
+--accent-hover: #3e2723;
+--focus-ring: 0 0 0 3px rgba(93, 64, 55, 0.3);
+
+/* Spacing scale (8px baseline) */
+--space-xs: 0.5rem;   /* 8px */
+--space-sm: 1rem;     /* 16px */
+--space-md: 1.5rem;   /* 24px */
+--space-lg: 2rem;     /* 32px */
+--space-xl: 3rem;     /* 48px */
+--space-xxl: 4rem;    /* 64px */
+
+/* Typography */
+--font-heading: 'Cormorant Garamond', serif;
+--font-body: 'Montserrat', sans-serif;
+--text-base: 1rem;
+--text-lg: 1.25rem;
+--text-xl: 1.5rem;
+--text-xxl: 2rem;
+--text-hero: clamp(2.5rem, 8vw, 4rem);
+
+/* Animation timing */
+--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+--duration-fast: 200ms;
+--duration-normal: 400ms;
+--duration-slow: 800ms;
+
+/* Transition shorthand */
+--transition-fast: all var(--duration-fast) var(--ease-smooth);
+}
+
+/* ========================================================================
+RESET & BASE STYLES
+======================================================================== */
+*, *::before, *::after {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+font-size: 16px;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+font-family: var(--font-body);
+font-size: var(--text-base);
+line-height: 1.6;
+color: var(--text-primary);
+background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-powder) 100%);
+background-attachment: fixed;
+overflow-x: hidden;
+}
+
+/* --- VIDEO BACKGROUND --- */
+.video-bg-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+overflow: hidden;
+}
+
+.video-bg-container video {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.video-overlay {
+position: absolute;
+inset: 0;
+background: rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================================================
+TYPOGRAPHY & UTILS
+======================================================================== */
+h1, h2, h3 {
+font-family: var(--font-heading);
+font-weight: 400;
+line-height: 1.2;
+}
+
+h1 {
+font-size: clamp(3rem, 10vw, 6rem);
+font-style: italic;
+margin-bottom: var(--space-sm);
+}
+
+h2 {
+font-size: clamp(2rem, 6vw, 3.5rem);
+text-align: center;
+margin-bottom: var(--space-md);
+color: var(--color-brown);
+}
+
+.container {
+width: 100%;
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 var(--space-sm);
+}
+
+.section {
+padding: var(--space-xl) 0;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity var(--duration-normal) var(--ease-smooth),
+transform var(--duration-normal) var(--ease-smooth);
+}
+
+.section.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.text-center { 
+text-align: center; 
+}
+
+.divider {
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--accent), transparent);
+margin-block: var(--space-lg);
+border: none;
+}
+
+/* Кнопки */
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: var(--space-xs);
+padding: var(--space-sm) var(--space-lg);
+background: var(--accent);
+color: var(--color-white);
+font-weight: 500;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+transition: var(--transition-fast);
+text-decoration: none;
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.btn:hover {
+background: var(--accent-hover);
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(93, 64, 55, 0.3);
+}
+
+.btn:focus {
+outline: none;
+box-shadow: var(--focus-ring);
+}
+
+.btn:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none;
+}
+
+/* ========================================================================
+HERO SECTION
+======================================================================== */
+.hero {
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+color: var(--color-white);
+position: relative;
+}
+
+.hero__content {
+position: relative;
+z-index: 1;
+animation: fadeIn 1.5s ease-out;
+padding: var(--space-md);
+}
+
+.hero__subtitle {
+text-transform: uppercase;
+letter-spacing: 4px;
+font-size: 0.9rem;
+margin-bottom: var(--space-sm);
+font-weight: 300;
+}
+
+.hero__date {
+font-size: 1.2rem;
+letter-spacing: 2px;
+margin: var(--space-md) 0;
+border-top: 1px solid rgba(255,255,255,0.5);
+border-bottom: 1px solid rgba(255,255,255,0.5);
+display: inline-block;
+padding: 10px 20px;
+}
+
+.hero__scroll {
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+animation: bounce 2s infinite;
+color: var(--color-white);
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {
+transform: translateX(-50%) translateY(0);
+}
+40% {
+transform: translateX(-50%) translateY(-10px);
+}
+60% {
+transform: translateX(-50%) translateY(-5px);
+}
+}
+
+:root {
+  /* ... существующие переменные ... */
+  --font-script: 'Marck Script', cursive;
+  --font-elegant: 'Cormorant Garamond', serif;
+}
+/* Элегантный шрифт для имён */
+.script-font {
+  font-family: var(--font-script);
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.hero__subtitle-elegant {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: 1.8rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-sm);
+}
+
+/* ========================================================================
+COUNTDOWN TIMER
+======================================================================== */
+.countdown {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: var(--space-sm);
+max-width: 500px;
+margin: var(--space-lg) auto;
+text-align: center;
+}
+
+.countdown-item {
+background: rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(4px);
+padding: var(--space-sm);
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+border: 1px solid rgba(93, 64, 55, 0.1);
+transition: var(--transition-fast);
+}
+
+.countdown-item:hover {
+transform: translateY(-4px);
+}
+
+.countdown-number {
+display: block;
+font-family: var(--font-heading);
+font-size: var(--text-xl);
+font-weight: 600;
+color: var(--accent);
+line-height: 1;
+}
+
+.countdown-label {
+font-size: 0.875rem;
+color: var(--text-secondary);
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-top: var(--space-xs);
+}
+
+/* ========================================================================
+PROGRAM SECTION
+======================================================================== */
+.program {
+background: rgba(255, 255, 255, 0.6);
+border-radius: 20px;
+padding: var(--space-lg);
+margin-block: var(--space-lg);
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.program-list {
+list-style: none;
+display: grid;
+gap: var(--space-md);
+position: relative;
+}
+
+.program-list::before {
+content: "";
+position: absolute;
+left: 20px;
+top: 10px;
+bottom: 10px;
+width: 2px;
+background: linear-gradient(to bottom, var(--accent), transparent);
+opacity: 0.3;
+}
+
+.program-item {
+display: grid;
+grid-template-columns: auto 1fr;
+gap: var(--space-sm);
+align-items: start;
+padding-left: var(--space-lg);
+position: relative;
+}
+
+.program-icon {
+width: 40px;
+height: 40px;
+background: var(--accent);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+flex-shrink: 0;
+position: relative;
+z-index: 1;
+box-shadow: 0 4px 12px rgba(93, 64, 55, 0.25);
+font-size: 1.2rem;
+}
+
+.program-time {
+font-weight: 500;
+color: var(--accent);
+font-size: 0.95rem;
+}
+
+.program-title {
+font-weight: 600;
+margin-bottom: var(--space-xs);
+font-family: var(--font-heading);
+font-size: var(--text-lg);
+}
+
+/* ========================================================================
+LOCATION & MAP
+======================================================================== */
+.location-card {
+background: white;
+border-radius: 16px;
+padding: var(--space-lg);
+text-align: center;
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+margin-block: var(--space-lg);
+}
+
+.location-address {
+font-size: var(--text-lg);
+font-weight: 500;
+margin-bottom: var(--space-sm);
+color: var(--text-primary);
+}
+
+.map-link {
+display: inline-block;
+margin-top: var(--space-sm);
+color: var(--accent);
+text-decoration: none;
+font-weight: 500;
+padding: var(--space-sm) var(--space-md);
+border: 2px dashed rgba(93, 64, 55, 0.3);
+border-radius: 12px;
+transition: var(--transition-fast);
+}
+
+.map-link:hover {
+border-color: var(--accent);
+background: rgba(93, 64, 55, 0.05);
+transform: scale(1.02);
+}
+
+/* ========================================================================
+COLOR PALETTE SECTION
+======================================================================== */
+.palette {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: var(--space-sm);
+margin: var(--space-lg) auto;
+max-width: 400px;
+}
+
+.palette-item {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+border: 3px solid white;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: var(--transition-fast);
+position: relative;
+cursor: pointer;
+}
+
+.palette-item:hover {
+transform: scale(1.1) rotate(5deg);
+}
+
+.palette-item::after {
+content: attr(data-name);
+position: absolute;
+bottom: -25px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 0.75rem;
+color: var(--text-secondary);
+white-space: nowrap;
+opacity: 0;
+transition: opacity var(--duration-fast);
+pointer-events: none;
+}
+
+.palette-item:hover::after {
+opacity: 1;
+}
+
+.palette-black { background: var(--color-black); }
+.palette-brown { background: var(--color-brown); }
+.palette-beige { background: var(--color-beige); border-color: var(--color-brown); }
+.palette-sand { background: var(--color-sand); }
+.palette-powder { background: var(--color-powder); }
+.palette-white { background: var(--color-white); border: 2px solid var(--color-brown); }
+
+/* ========================================================================
+RSVP FORM
+======================================================================== */
+.rsvp-form {
+background: white;
+border-radius: 20px;
+padding: var(--space-lg);
+max-width: 600px;
+margin: var(--space-lg) auto;
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+margin-bottom: var(--space-md);
+}
+
+.form-label {
+display: block;
+margin-bottom: var(--space-xs);
+font-weight: 500;
+color: var(--text-primary);
+}
+
+.form-input,
+.form-select {
+width: 100%;
+padding: var(--space-sm);
+border: 2px solid var(--color-sand);
+border-radius: 10px;
+font-family: inherit;
+font-size: 1rem;
+transition: var(--transition-fast);
+background: var(--color-beige);
+}
+
+.form-input:focus,
+.form-select:focus {
+outline: none;
+border-color: var(--accent);
+box-shadow: var(--focus-ring);
+}
+
+.radio-group {
+display: flex;
+gap: var(--space-md);
+flex-wrap: wrap;
+}
+
+.radio-option {
+display: flex;
+align-items: center;
+gap: var(--space-xs);
+cursor: pointer;
+}
+
+.radio-option input {
+width: 18px;
+height: 18px;
+accent-color: var(--accent);
+cursor: pointer;
+}
+
+.checkbox-group {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+gap: var(--space-xs);
+margin-top: var(--space-xs);
+}
+
+.checkbox-option {
+display: flex;
+align-items: center;
+gap: var(--space-xs);
+font-size: 0.95rem;
+}
+
+.checkbox-option input {
+width: 16px;
+height: 16px;
+accent-color: var(--accent);
+}
+
+.form-note {
+font-size: 0.875rem;
+color: var(--text-secondary);
+margin-top: var(--space-xs);
+font-style: italic;
+}
+
+/* ========================================================================
+CONTACT & FOOTER
+======================================================================== */
+.contact-card {
+text-align: center;
+padding: var(--space-lg);
+background: rgba(255, 255, 255, 0.5);
+border-radius: 16px;
+margin-block: var(--space-lg);
+}
+
+.contact-name {
+font-weight: 600;
+color: var(--accent);
+margin-bottom: var(--space-xs);
+font-size: var(--text-lg);
+}
+
+.contact-phone {
+font-size: var(--text-xl);
+font-weight: 500;
+color: var(--text-primary);
+text-decoration: none;
+transition: var(--transition-fast);
+display: inline-block;
+}
+
+.contact-phone:hover {
+color: var(--accent);
+}
+
+footer {
+text-align: center;
+padding: var(--space-lg);
+color: var(--text-secondary);
+font-size: 0.9rem;
+border-top: 1px solid rgba(93, 64, 55, 0.1);
+margin-top: var(--space-xl);
+}
+
+/* ========================================================================
+RESPONSIVE DESIGN
+======================================================================== */
+@media (max-width: 768px) {
+:root {
+--space-xl: 2.5rem;
+}
+
+.countdown {
+grid-template-columns: repeat(2, 1fr);
+gap: var(--space-xs);
+}
+
+.countdown-number {
+font-size: var(--text-lg);
+}
+
+.program-list::before {
+left: 15px;
+}
+
+.program-item {
+padding-left: var(--space-md);
+}
+
+.program-icon {
+width: 32px;
+height: 32px;
+font-size: 1rem;
+}
+
+.palette {
+gap: var(--space-xs);
+}
+
+.palette-item {
+width: 40px;
+height: 40px;
+}
+
+.radio-group {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.checkbox-group {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 480px) {
+.countdown {
+grid-template-columns: 1fr;
+}
+}
+
+/* ========================================================================
+REDUCED MOTION
+======================================================================== */
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.01ms !important;
+scroll-behavior: auto !important;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<div class="video-bg-container">
+<video autoplay muted loop playsinline id="bg-video">
+<source src="fon.mp4" type="video/mp4">
+Ваш браузер не поддерживает видео формат MP4.
+</video>
+<div class="video-overlay"></div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero__content">
+    <p class="hero__subtitle">ПРИГЛАШЕНИЕ</p>
+    <p class="hero__subtitle-elegant">на свадьбу</p>
+    
+    <div class="script-font">
+      <div>Кристины</div>
+      <div style="font-size: 0.5em; text-align: center; margin: 0.2em 0;">&</div>
+      <div>Димы</div>
+    </div>
+    
+    <div class="hero__date">07 АВГУСТА 2026</div>
+    <p style="margin-top: 1rem; letter-spacing: 2px;">ЕКАТЕРИНБУРГ</p>
+    
+    <div style="margin-top: 2rem;">
+      <a href="#rsvp" class="btn" style="border-color: #dfdcdc; color: #dbd8d8;">Я приду!</a>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+      <path d="M7 13L12 18L17 13M7 6L12 11L17 6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section container" id="countdown-section" aria-labelledby="countdown-title">
+<h2 id="countdown-title">До свадьбы осталось</h2>
+<div class="countdown" id="countdown" role="timer" aria-live="polite">
+<div class="countdown-item">
+<span class="countdown-number" id="days">00</span>
+<span class="countdown-label">дней</span>
+</div>
+<div class="countdown-item">
+<span class="countdown-number" id="hours">00</span>
+<span class="countdown-label">часов</span>
+</div>
+<div class="countdown-item">
+<span class="countdown-number" id="minutes">00</span>
+<span class="countdown-label">минут</span>
+</div>
+<div class="countdown-item">
+<span class="countdown-number" id="seconds">00</span>
+<span class="countdown-label">секунд</span>
+</div>
+</div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROGRAM -->
+<section class="section container" id="program" aria-labelledby="program-title">
+<h2 id="program-title" class="text-center">Программа дня</h2>
+<p class="text-center">Наш день будет наполнен любовью, радостью и тёплыми моментами</p>
+<div class="program">
+<ol class="program-list">
+<li class="program-item">
+<div class="program-icon" aria-hidden="true">💍</div>
+<div>
+<div class="program-time">14:00</div>
+<div class="program-title">Торжественная церемония</div>
+<p>Вы станете свидетелями создания нашей семьи</p>
+</div>
+</li>
+<li class="program-item">
+<div class="program-icon" aria-hidden="true">🥂</div>
+<div>
+<div class="program-time">16:00</div>
+<div class="program-title">Праздничный банкет</div>
+<p>Время вкусной еды, танцев и развлечений</p>
+</div>
+</li>
+<li class="program-item">
+<div class="program-icon" aria-hidden="true">💃</div>
+<div>
+<div class="program-time">20:00</div>
+<div class="program-title">Танцы и фейерверк</div>
+<p>Захватите с собой хорошее настроение и свои улыбки</p>
+</div>
+</li>
+<li class="program-item">
+<div class="program-icon" aria-hidden="true">✨</div>
+<div>
+<div class="program-time">23:00</div>
+<div class="program-title">Завершение вечера</div>
+<p>Спасибо, что разделили с нами этот день</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- LOCATION -->
+<section class="section container visible" id="location" aria-labelledby="location-title">
+<h2 id="location-title" class="text-center">Место проведения</h2>
+<div class="location-card">
+<p class="location-address">Сысертский г.о., Загородный клуб «Облака»</p>
+<p style="margin-bottom: var(--space-sm); color: var(--text-secondary);">
+Для вашего удобства предусмотрена парковка и трансфер от центра города
+</p>
+<a href="https://yandex.ru/maps/?ll=60.851380%2C56.488077&mode=whatshere&whatshere%5Bpoint%5D=60.850827%2C56.488248&whatshere%5Bzoom%5D=17&z=19.24" 
+target="_blank" 
+rel="noopener noreferrer"
+class="map-link">
+Открыть карту в Яндекс.Картах →
+</a>
+</div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="section container" id="palette" aria-labelledby="palette-title">
+<h2 id="palette-title" class="text-center">Цветовая палитра</h2>
+<p class="text-center">Мы будем благодарны, если вы поддержите цвета нашей свадьбы</p>
+<div class="palette" role="list">
+<div class="palette-item palette-black" data-name="Чёрный" role="listitem" aria-label="Чёрный"></div>
+<div class="palette-item palette-brown" data-name="Коричневый" role="listitem" aria-label="Коричневый"></div>
+<div class="palette-item palette-beige" data-name="Бежевый" role="listitem" aria-label="Бежевый"></div>
+<div class="palette-item palette-sand" data-name="Песочный" role="listitem" aria-label="Песочный"></div>
+<div class="palette-item palette-powder" data-name="Пудровый" role="listitem" aria-label="Пудровый"></div>
+<div class="palette-item palette-white" data-name="Белый" role="listitem" aria-label="Белый"></div>
+</div>
+</section>
+
+<!-- IMPORTANT NOTES -->
+<section class="section container" aria-labelledby="notes-title">
+<h2 id="notes-title" class="text-center">Важно</h2>
+<div class="location-card" style="text-align: left;">
+<p><strong>💝 Подарки:</strong> Ваша улыбка и хорошее настроение — главное для нас.
+Если хотите сделать ценный подарок, мы будем благодарны за вклад в бюджет молодой семьи.</p>
+<p style="margin-top: var(--space-sm);"><strong>👶 Дети:</strong> Мы очень хотим, чтобы вы отдохнули,
+поэтому просим оставить детей дома под присмотром близких.</p>
+<p style="margin-top: var(--space-sm); color: var(--accent); font-weight: 500;">
+📅 Просьба подтвердить присутствие до 20 мая 2026
+</p>
+</div>
+</section>
+
+<!-- RSVP FORM -->
+<section class="section container" id="rsvp" aria-labelledby="rsvp-title">
+<h2 id="rsvp-title" class="text-center">Подтвердите присутствие</h2>
+<form class="rsvp-form" id="rsvpForm" novalidate>
+<div class="form-group">
+<label class="form-label" for="guestName">Ваше имя и фамилия *</label>
+<input
+type="text"
+id="guestName"
+name="guestName"
+class="form-input"
+placeholder="Иван Иванов"
+required
+autocomplete="name"
+aria-required="true"
+/>
+</div>
+
+<div class="form-group">
+<label class="form-label">Получится ли у вас присутствовать? *</label>
+<div class="radio-group" role="radiogroup" aria-required="true">
+<label class="radio-option">
+<input type="radio" name="attendance" value="yes" required />
+<span>Да, с радостью!</span>
+</label>
+<label class="radio-option">
+<input type="radio" name="attendance" value="no" />
+<span>К сожалению, нет</span>
+</label>
+</div>
+</div>
+
+<div class="form-group" id="drinksGroup" hidden>
+<label class="form-label">Что предпочитаете из напитков?</label>
+<div class="checkbox-group">
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="red-wine" />
+<span>Красное вино</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="white-wine" />
+<span>Белое вино</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="champagne" />
+<span>Шампанское</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="vodka" />
+<span>Водка</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="whiskey" />
+<span>Виски</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="cognac" />
+<span>Коньяк</span>
+</label>
+<label class="checkbox-option">
+<input type="checkbox" name="drinks" value="none" />
+<span>Не пью алкоголь</span>
+</label>
+</div>
+</div>
+
+<button type="submit" class="btn" id="submitBtn">
+<span>Отправить ответ</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M22 2L11 13"></path>
+<path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+</svg>
+</button>
+<p class="form-note">* Обязательные поля</p>
+</form>
+</section>
+
+<!-- CONTACT -->
+<section class="section container" aria-labelledby="contact-title">
+<h2 id="contact-title" class="text-center">Вопросы?</h2>
+<div class="contact-card">
+<p>Если хотите сделать сюрприз или уточнить детали, свяжитесь с нашим организатором:</p>
+<p class="contact-name">Светлана</p>
+<a href="tel:+79818861270" class="contact-phone">+7 (981) 886-12-70</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+<p>С любовью, Кристина & Дима 💜</p>
+<p style="margin-top: var(--space-xs); font-size: 0.85rem; opacity: 0.8;">
+© 2026 Приглашение на свадьбу | Создано с заботой
+</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+// CONFIG
+const CONFIG = {
+weddingDate: new Date('2026-08-07T14:00:00+05:00').getTime(),
+animationThreshold: 0.15,
+debounceDelay: 100
+};
+
+// UTILS
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pad = (num) => String(num).padStart(2, '0');
+
+// COUNTDOWN
+const initCountdown = () => {
+const elements = {
+days: document.getElementById('days'),
+hours: document.getElementById('hours'),
+minutes: document.getElementById('minutes'),
+seconds: document.getElementById('seconds')
+};
+
+if (!Object.values(elements).every(el => el)) return;
+
+const update = () => {
+const now = Date.now();
+const diff = CONFIG.weddingDate - now;
+
+if (diff <= 0) {
+Object.values(elements).forEach(el => el.textContent = '00');
+return;
+}
+
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+elements.days.textContent = pad(days);
+elements.hours.textContent = pad(hours);
+elements.minutes.textContent = pad(minutes);
+elements.seconds.textContent = pad(seconds);
+};
+
+update();
+setInterval(update, 1000);
+};
+
+// SCROLL ANIMATIONS
+const initScrollAnimations = () => {
+const sections = document.querySelectorAll('.section');
+
+if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+sections.forEach(sec => sec.classList.add('visible'));
+return;
+}
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}
+});
+}, {
+threshold: CONFIG.animationThreshold,
+rootMargin: '0px 0px -50px 0px'
+});
+
+sections.forEach(section => observer.observe(section));
+};
+
+// FORM
+const initForm = () => {
+const form = document.getElementById('rsvpForm');
+const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+const drinksGroup = document.getElementById('drinksGroup');
+const submitBtn = document.getElementById('submitBtn');
+
+if (!form) return;
+
+const toggleDrinks = () => {
+const selected = document.querySelector('input[name="attendance"]:checked');
+if (selected && selected.value === 'yes') {
+drinksGroup.hidden = false;
+} else {
+drinksGroup.hidden = true;
+drinksGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+}
+};
+
+attendanceRadios.forEach(radio => {
+radio.addEventListener('change', toggleDrinks);
+});
+
+form.addEventListener('submit', async (e) => {
+e.preventDefault();
+
+if (!form.checkValidity()) {
+form.reportValidity();
+return;
+}
+
+const attendance = document.querySelector('input[name="attendance"]:checked');
+if (!attendance) {
+alert('Пожалуйста, укажите, сможете ли вы присутствовать');
+return;
+}
+
+const formData = {
+name: document.getElementById('guestName').value.trim(),
+attendance: attendance.value,
+drinks: attendance.value === 'yes'
+? Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map(cb => cb.value)
+: []
+};
+
+const originalBtnText = submitBtn.innerHTML;
+submitBtn.disabled = true;
+submitBtn.innerHTML = '<span>Отправка...</span>';
+
+try {
+await new Promise(resolve => setTimeout(resolve, 800));
+alert(`Спасибо, ${formData.name}! Ваш ответ принят 💜`);
+form.reset();
+drinksGroup.hidden = true;
+} catch (error) {
+console.error('Form submission error:', error);
+alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+} finally {
+submitBtn.disabled = false;
+submitBtn.innerHTML = originalBtnText;
+}
+});
+
+toggleDrinks();
+};
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+const href = this.getAttribute('href');
+if (href === '#') return;
+e.preventDefault();
+const target = document.querySelector(href);
+if (target) {
+target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+}
+});
+});
+
+// INIT
+initCountdown();
+initScrollAnimations();
+initForm();
+});
+</script>
+</body>
+</html>
