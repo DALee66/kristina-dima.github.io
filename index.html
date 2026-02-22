@@ -22,9 +22,6 @@ LOCATION: Екатеринбург
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ========================================================================
 CSS VARIABLES — Исправленные и дополненные
@@ -283,27 +280,6 @@ transform: translateX(-50%) translateY(-10px);
 60% {
 transform: translateX(-50%) translateY(-5px);
 }
-}
-
-:root {
-  /* ... существующие переменные ... */
-  --font-script: 'Marck Script', cursive;
-  --font-elegant: 'Cormorant Garamond', serif;
-}
-/* Элегантный шрифт для имён */
-.script-font {
-  font-family: var(--font-script);
-  font-size: clamp(3.5rem, 12vw, 7rem);
-  line-height: 1.1;
-  font-weight: 400;
-}
-
-.hero__subtitle-elegant {
-  font-family: var(--font-elegant);
-  font-style: italic;
-  font-size: 1.8rem;
-  opacity: 0.9;
-  margin-bottom: var(--space-sm);
 }
 
 /* ========================================================================
@@ -701,20 +677,17 @@ transition-duration: 0.01ms !important;
 scroll-behavior: auto !important;
 }
 }
-/* Фикс для мобильных устройств */
-@media (max-width: 768px) {
-    .video-bg-container video {
+/* Специальный фикс для iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .video-bg-container {
+        height: -webkit-fill-available;
+    }
+    
+    #bg-video {
         width: 100vw;
         height: 100vh;
         object-fit: cover;
-        /* Принудительное отображение */
-        display: block !important; 
-        visibility: visible !important;
-    }
-    
-    /* Убираем возможные артефакты на iOS */
-    #bg-video {
-        -webkit-transform: translateZ(0);
+        /* Принудительно включаем аппаратное ускорение */
         transform: translateZ(0);
         backface-visibility: hidden;
         perspective: 1000px;
@@ -726,37 +699,41 @@ scroll-behavior: auto !important;
 
 <!-- VIDEO BACKGROUND -->
 <div class="video-bg-container">
-<video autoplay muted loop playsinline id="bg-video">
-<source src="https://www.salnikovadesign.space/copy_2E6D0E8D-89E9-4247-AE03-C2F25C055B9C.mp4" type="video/mp4">
-Ваш браузер не поддерживает видео формат MP4.
-</video>
-<div class="video-overlay"></div>
+    <!-- 
+     webkit-playsinline - критически важен для старых и некоторых новых версий iOS Safari 
+      poster - добавляем заглушку (первый кадр), чтобы пока видео грузится, не было черного экрана
+    -->
+    <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        webkit-playsinline 
+        id="bg-video"
+        poster="poster.jpg" 
+    >
+        <source src="fon.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+    <div class="video-overlay"></div>
 </div>
 
 <!-- HERO SECTION -->
 <section class="hero">
-  <div class="hero__content">
-    <p class="hero__subtitle">ПРИГЛАШЕНИЕ</p>
-    <p class="hero__subtitle-elegant">на свадьбу</p>
-    
-    <div class="script-font">
-      <div>Кристины</div>
-      <div style="font-size: 0.5em; text-align: center; margin: 0.2em 0;">&</div>
-      <div>Димы</div>
-    </div>
-    
-    <div class="hero__date">07 АВГУСТА 2026</div>
-    <p style="margin-top: 1rem; letter-spacing: 2px;">ЕКАТЕРИНБУРГ</p>
-    
-    <div style="margin-top: 2rem;">
-      <a href="#rsvp" class="btn" style="border-color: #dfdcdc; color: #dbd8d8;">Я приду!</a>
-    </div>
-  </div>
-  <div class="hero__scroll">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-      <path d="M7 13L12 18L17 13M7 6L12 11L17 6"/>
-    </svg>
-  </div>
+<div class="hero__content">
+<p class="hero__subtitle">Приглашение на свадьбу</p>
+<h1>Кристины <br>&<br> Димы</h1>
+<div class="hero__date">07 АВГУСТА 2026</div>
+<p style="margin-top: 1rem; letter-spacing: 2px;">ЕКАТЕРИНБУРГ</p>
+<div style="margin-top: 2rem;">
+<a href="#rsvp" class="btn">Я приду!</a>
+</div>
+</div>
+<div class="hero__scroll">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M7 13L12 18L17 13M7 6L12 11L17 6"/>
+</svg>
+</div>
 </section>
 
 <!-- COUNTDOWN -->
@@ -1125,5 +1102,4 @@ initForm();
 });
 </script>
 </body>
-
 </html>
