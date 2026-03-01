@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вам пришло приглашение</title>
+    
+    <!-- 🔤 Шрифты Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Georgia', serif;
+            background: linear-gradient(135deg, rgba(245, 235, 224, 0.85) 0%, rgba(232, 221, 212, 0.85) 50%, rgba(212, 196, 184, 0.85) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Фоновая текстура ткани */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg-fabric.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            opacity: 0.5;
+        }
+
+        /* Фоновые элементы */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-decoration::before,
+        .bg-decoration::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .bg-decoration::before {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-decoration::after {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInDown 1.5s ease forwards;
+        }
+
+        .subtitle {
+            font-family: 'Marck Script', cursive;
+            font-size: 3.5rem;
+            color: #6b5b5b;
+            font-style: normal;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 0.5s forwards;
+        }
+
+        /* Бьющееся сердце */
+        .heart-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1.5s ease 1s forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .heart-container:hover {
+            transform: scale(1.05);
+        }
+
+        .heart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(139, 115, 85, 0.3));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+        }
+
+        /* Пульсация для контейнера */
+        .heart-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 115, 85, 0.2) 0%, transparent 70%);
+            animation: pulse 2s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+            100% {
+                width: 300%;
+                height: 300%;
+                opacity: 0;
+            }
+        }
+
+        .click-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #6b5b5b;
+            margin-top: 50px;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 1.5s forwards;
+        }
+
+        .click-hint {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #8b7355;
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 2s forwards;
+        }
+
+        /* Анимации появления */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.6rem;
+                letter-spacing: 2px;
+            }
+            .subtitle {
+                font-size: 2.5rem;
+            }
+            .heart-container {
+                width: 150px;
+                height: 150px;
+            }
+            .click-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.3rem;
+            }
+            .subtitle {
+                font-size: 2rem;
+            }
+            .heart-container {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Эффект нажатия */
+        .pressed {
+            animation: pressHeart 0.3s ease !important;
+        }
+
+        @keyframes pressHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновая текстура -->
+    <div class="bg-texture"></div>
+    
+    <div class="bg-decoration"></div>
+    
+    <div class="container">
+        <h1 class="title">Вам пришло</h1>
+        <p class="subtitle">Приглашение</p>
+        
+        <div class="heart-container" onclick="enterSite()">
+          <div class="heart-pulse"></div>
+          <div class="heart">
+            <img src="heart.png" alt="Сердце" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        </div>
+        
+        <p class="click-text">нажмите, чтобы открыть<br>приглашение</p>
+        <p class="click-hint">Дмитрий & Кристина ждут вас</p>
+    </div>
+
+    <script>
+        function enterSite() {
+            const heart = document.querySelector('.heart-container');
+            heart.classList.add('pressed');
+            
+            // Эффект перехода
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.8s ease';
+                document.body.style.opacity = '0';
+                
+                setTimeout(() => {
+                    // Переход на основную страницу
+                    window.location.href = 'main.html';
+                }, 600);
+            }, 300);
+        }
+
+        // Добавляем обработку клавиши Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enterSite();
+            }
+        });
+
+        // Предзагрузка основной страницы
+        window.addEventListener('load', function() {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = 'main.html';
+            document.head.appendChild(link);
+        });
+    </script>
+</body>
+</html>
